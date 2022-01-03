@@ -6,28 +6,11 @@ services:
       image: mongo:latest
       container_name: mongodb
       environment:
-        MONGO_INITDB_ROOT_USERNAME: root
-        MONGO_INITDB_ROOT_PASSWORD: rootpassword
+        MONGO_INITDB_ROOT_USERNAME: admin
+        MONGO_INITDB_ROOT_PASSWORD: adminmongo17x
       ports:
         - 27017:27017
       volumes:
         - .dbmongodb:/var/lib/lib/mongodb
-      networks:
-        - mongodb_net
         
-    # create mongoclient docker 
-    mongoclient:
-      image: mongoclient/mongoclient:latest
-      container_name: mongoclient
-      hostname: mongoclient
-      depends_on:
-        - mongodb
-      networks:
-        - mongodb_net
-      ports:
-        - 3300:3000
-
-networks:
-  mongodb_net:
-    driver: bridge
       
